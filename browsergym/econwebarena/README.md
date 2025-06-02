@@ -29,8 +29,7 @@ To run inference on a sample task, use the following command:
 python demo_agent/run_demo.py --model_name gpt-4.1 --task_name econwebarena.1 --use_axtree True --use_screenshot True
 ```
 
-This runs a demo agent using GPT-4.1 on the `econwebarena.1` task with both DOM accessibility tree and screenshot
-modalities enabled.
+This runs a demo agent using GPT-4.1 on the `econwebarena.1` task with both DOM accessibility tree and screenshot modalities enabled.
 
 ## 📚 More Information
 
