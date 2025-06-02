@@ -246,6 +246,34 @@ ACTION_SUBSETS = {
         goto,  # GOTO, SEARCH
         send_msg_to_user,  # TERMINATE
     ],
+    # from econwebarena paper
+    "econwebarena": [
+        # bid:
+        scroll,
+        fill,
+        click,
+        hover,
+        press,
+        focus,
+        clear,
+        select_option,
+        # coord:
+        scroll_at,
+        mouse_move,
+        mouse_click,
+        mouse_drag_and_drop,
+        # tab:
+        tab_close,
+        tab_focus,
+        new_tab,
+        # nav:
+        go_back,
+        go_forward,
+        goto,
+        # misc:
+        send_msg_to_user,
+        # noop, # always allowed
+    ]
 }
 
 
@@ -277,6 +305,7 @@ class HighLevelActionSet(AbstractActionSet):
         "workarena++",
         "weblinx",
         "assistantbench",
+        "econwebarena",
         "custom",
     ]
     DemoMode = typing.Literal["off", "default", "all_blue", "only_visible_elements"]

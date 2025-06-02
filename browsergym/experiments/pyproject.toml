@@ -40,6 +40,9 @@ visualwebarena = [
 assistantbench = [
   "browsergym-assistantbench",
 ]
+econwebarena = [
+  "browsergym-econwebarena",
+]
 weblinx = [
   "weblinx_browsergym",
 ]
@@ -49,6 +52,7 @@ all = [
   "browsergym-experiment[webarena]",
   "browsergym-experiment[visualwebarena]",
   "browsergym-experiment[assistantbench]",
+  "browsergym-experiment[econwebarena]",
   "browsergym-experiment[weblinx]",
 ]
 

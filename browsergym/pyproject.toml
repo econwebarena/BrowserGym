@@ -35,6 +35,7 @@ dependencies = [
     "browsergym-webarena==0.14.0",
     "browsergym-visualwebarena==0.14.0",
     "browsergym-assistantbench==0.14.0",
+    "browsergym-econwebarena==0.14.0",
     "browsergym-experiments==0.14.0",
     "browsergym-workarena>=0.4.1",
     "weblinx-browsergym>=0.0.2",

@@ -84,8 +84,14 @@ def _post_extract(page: playwright.sync_api.Page):
         __name__, "javascript/frame_unmark_elements.js"
     ).decode("utf-8")
 
+    try:
+        # wait until the main DOM is available
+        page.wait_for_selector("body", timeout=30_000)
+    except Exception as e:
+        logger.warning(f"Timeout waiting for 'body' element: {e}")
+
     # we can't run this loop in JS due to Same-Origin Policy
-    # (can't access the content of an iframe from a another one)
+    # (can't access the content of an iframe from another one)
     for frame in page.frames:
         try:
             if not frame == page.main_frame:
@@ -104,12 +110,25 @@ def _post_extract(page: playwright.sync_api.Page):
                 if bid is None:
                     continue
 
-            frame.evaluate(js_frame_unmark_elements)
+            # sanity check: only evaluate if DOM is fully loaded and document is usable
+            is_ready = frame.evaluate(
+                "() => typeof document !== 'undefined' && "
+                "typeof document.querySelectorAll === 'function' && "
+                "document.readyState === 'complete'"
+            )
+            if is_ready:
+                frame.evaluate(js_frame_unmark_elements)
+            else:
+                logger.warning(f"Skipping frame '{frame.name}': DOM not ready.")
+
         except playwright.sync_api.Error as e:
+            # ignore detached frames
             if any(msg in str(e) for msg in ("Frame was detached", "Frame has been detached")):
                 pass
             else:
-                raise e
+                # log any other evaluation errors and skip
+                logger.warning(f"Skipping frame '{frame.name}' due to error: {e}")
+                continue
 
 
 def extract_screenshot(page: playwright.sync_api.Page):

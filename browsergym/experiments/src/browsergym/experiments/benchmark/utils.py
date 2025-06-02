@@ -191,6 +191,10 @@ def prepare_backend(backend: str):
             # register environments
             import browsergym.assistantbench
 
+        case "econwebarena":
+            # register environments
+            import browsergym.econwebarena
+
         case "weblinx":
             # register environments
             import weblinx_browsergym

@@ -253,15 +253,15 @@ class BrowserEnv(gym.Env, ABC):
 
         # use the global Playwright instance
         pw: playwright.sync_api.Playwright = _get_global_playwright()
-        # important: change playwright's test id attribute from "data-testid" to "bid"
-        pw.selectors.set_test_id_attribute(BROWSERGYM_ID_ATTRIBUTE)
+
         args = [
             (
                 f"--window-size={viewport['width']},{viewport['height']}"
                 if self.resizeable_window
                 else None
             ),
-            "--disable-features=OverlayScrollbars,ExtendedOverlayScrollbars",  # otherwise the screenshot doesn't see the scrollbars
+            "--disable-features=OverlayScrollbars,ExtendedOverlayScrollbars",
+            # otherwise the screenshot doesn't see the scrollbars
         ]
         args = [arg for arg in args if arg is not None]  # Remove None values
 
@@ -276,6 +276,10 @@ class BrowserEnv(gym.Env, ABC):
             # will raise an Exception if above args are overriden
             **self.pw_chromium_kwargs,
         )
+
+        # important: change playwright's test id attribute from "data-testid" to "bid"
+        # This must happen after launching a browser to ensure the transport is ready
+        pw.selectors.set_test_id_attribute(BROWSERGYM_ID_ATTRIBUTE)
 
         # create a new browser context for pages
         self.context = self.browser.new_context(

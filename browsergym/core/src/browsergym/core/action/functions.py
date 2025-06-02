@@ -490,7 +490,7 @@ def goto(url: str):
     Examples:
         goto('http://www.example.com')
     """
-    page.goto(url)
+    page.goto(url, timeout=30_000, wait_until="load")
 
 
 # https://playwright.dev/python/docs/api/class-page#page-go-back

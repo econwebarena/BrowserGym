@@ -1,6 +1,6 @@
 install:
 	@echo "--- 🚀 Installing project dependencies ---"
-	pip install -e ./browsergym/core -e ./browsergym/miniwob -e ./browsergym/webarena -e ./browsergym/visualwebarena/ -e ./browsergym/experiments -e ./browsergym/assistantbench -e ./browsergym/
+	pip install -e ./browsergym/core -e ./browsergym/miniwob -e ./browsergym/webarena -e ./browsergym/visualwebarena/ -e ./browsergym/experiments -e ./browsergym/assistantbench -e ./browsergym/econwebarena -e ./browsergym/
 	playwright install chromium
 
 install-demo:

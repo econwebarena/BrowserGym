@@ -77,6 +77,13 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
         retry_with_force=True,
         demo_mode="off",
     ),
+    "econwebarena": HighLevelActionSetArgs(
+        subsets=["econwebarena"],
+        multiaction=False,
+        strict=False,
+        retry_with_force=True,
+        demo_mode="off",
+    ),
     "weblinx": HighLevelActionSetArgs(
         subsets=["weblinx"],
         multiaction=False,
@@ -243,6 +250,19 @@ DEFAULT_BENCHMARKS = {
             seeds_rng=np.random.RandomState(42),
         ),
         task_metadata=task_metadata("assistantbench"),
+    ),
+    "econwebarena": lambda: Benchmark(
+        name="econwebarena",
+        high_level_action_set_args=DEFAULT_HIGHLEVEL_ACTION_SET_ARGS["econwebarena"],
+        is_multi_tab=True,
+        supports_parallel_seeds=True,
+        backends=["econwebarena"],
+        env_args_list=make_env_args_list_from_repeat_tasks(
+            task_list=[f"econwebarena.{id}" for id in range(1, 361)],
+            max_steps=30,
+            n_repeats=1,
+            seeds_rng=np.random.RandomState(42),
+        ),
     ),
     "weblinx": lambda: Benchmark(
         name="weblinx",
