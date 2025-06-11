@@ -35,3 +35,16 @@ This runs a demo agent using GPT-4.1 on the `econwebarena.1` task with both DOM 
 
 * For details about BrowserGym: [BrowserGym GitHub](https://github.com/ServiceNow/BrowserGym)
 * For information on the EconWebArena benchmark: [EconWebArena Webpage](https://econwebarena.github.io/)
+
+## 📖 Citation
+
+If you find this benchmark useful in your research, please consider citing the following work:
+
+```bibtex
+@article{liu2025econwebarena,
+  title={EconWebArena: Benchmarking Autonomous Agents on Economic Tasks in Realistic Web Environments},
+  author={Liu, Zefang and Quan, Yinzhu},
+  journal={arXiv preprint arXiv:2506.08136},
+  year={2025}
+}
+```
